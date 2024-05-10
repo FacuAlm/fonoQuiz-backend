@@ -5,12 +5,15 @@ import PatientRoutes from "./routes/Patient.Routes.js";
 import UserRoutes from "./routes/User.Routes.js";
 import cors from "cors";
 
+
+const app = express();
+app.use(express.json());
 dotenv.config();
 
 connectDB();
 
-const app = express();
-app.use(express.json());
+
+
 app.use(cors({ origin: "*" }));
 
 app.get("/", (req, res) => {
