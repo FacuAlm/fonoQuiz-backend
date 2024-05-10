@@ -7,16 +7,16 @@ const registrar = async (req, res) => {
   const existeUsuario = await Usuario.findOne({ username });
 
   if (existeUsuario) {
-    return res.status(400).json({ msg: "El usuario ya existe" });
+    res.status(400).json({ msg: "El usuario ya existe" });
   }
 
   try {
     const usuario = new Usuario(req.body);
     const usuarioAlamacenado = await usuario.save();
-    return res.json({ msg: "Usuario Registrado" });
+    res.json({ msg: "Usuario Registrado" });
   } catch (error) {
    
-    return res.status(500).json({ msg: "Error en el servidor" });
+     res.status(500).json({ msg: "Error en el servidor" });
   }
 };
 
@@ -27,7 +27,7 @@ const autenticar = async (req, res) => {
   const usuario = await Usuario.findOne({ username });
   if (!usuario) {
     const error = new Error("El usuario no existe");
-    return res.status(404).json({ msg: error.message });
+    res.status(404).json({ msg: error.message });
   }
 
   //comprobar password
@@ -41,7 +41,7 @@ const autenticar = async (req, res) => {
     });
   } else {
     const error = new Error("Password incorrecto");
-    return res.status(400).json({ msg: error.message });
+   res.status(400).json({ msg: error.message });
   }
 };
 
@@ -51,14 +51,14 @@ const perfil = async (req, res) => {
 
     if (!usuario) {
       // Manejar caso en el que el usuario no está autenticado
-      return res.status(401).json({ msg: "Usuario no autenticado" });
-      return;
+       res.status(401).json({ msg: "Usuario no autenticado" });
+      
     }
 
     res.json(usuario);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ msg: "Error en el servidor" });
+    res.status(500).json({ msg: "Error en el servidor" });
   }
 };
 
