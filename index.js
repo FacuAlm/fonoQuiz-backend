@@ -13,8 +13,13 @@ dotenv.config();
 connectDB();
 
 
+const corsOptions = {
+  origin: "https://fono-quiz-frontend.vercel.app",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   res.send("Hello World");
