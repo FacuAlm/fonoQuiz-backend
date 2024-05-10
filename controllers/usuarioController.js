@@ -13,9 +13,10 @@ const registrar = async (req, res) => {
   try {
     const usuario = new Usuario(req.body);
     const usuarioAlamacenado = await usuario.save();
-    res.json({ msg: "Usuario Registrado" });
+    return res.json({ msg: "Usuario Registrado" });
   } catch (error) {
-    console.log(error);
+   
+    return res.status(500).json({ msg: "Error en el servidor" });
   }
 };
 
@@ -50,14 +51,14 @@ const perfil = async (req, res) => {
 
     if (!usuario) {
       // Manejar caso en el que el usuario no está autenticado
-      res.status(401).json({ msg: "Usuario no autenticado" });
+      return res.status(401).json({ msg: "Usuario no autenticado" });
       return;
     }
 
     res.json(usuario);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ msg: "Error en el servidor" });
+    return res.status(500).json({ msg: "Error en el servidor" });
   }
 };
 

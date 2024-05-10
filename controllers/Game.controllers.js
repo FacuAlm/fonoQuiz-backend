@@ -15,7 +15,7 @@ export class GameController {
       await game.save();
       return res.send("Juego creado correctamente");
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
 
@@ -24,9 +24,9 @@ export class GameController {
       const games = await Game.find({
         diagnostico: req.params.diagnosisid,
       }).populate("diagnostico");
-      res.json(games);
+      return res.json(games);
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return  res.status(500).json({ error: "Hubo un error" });
     }
   };
 
@@ -43,9 +43,9 @@ export class GameController {
         return res.status(404).json({ message: "Juego no encontrado" });
       }
 
-      res.json(game);
+      return res.json(game);
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
 
@@ -61,9 +61,9 @@ export class GameController {
         return res.status(404).json({ message: "Juego no encontrado" });
       }
 
-      res.send("Juego actualizado correctamente");
+      return res.send("Juego actualizado correctamente");
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
 
@@ -78,9 +78,9 @@ export class GameController {
         return res.status(404).json({ message: "Juego no encontrado" });
       }
 
-      res.send("Juego eliminado correctamente");
+      return res.send("Juego eliminado correctamente");
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
   

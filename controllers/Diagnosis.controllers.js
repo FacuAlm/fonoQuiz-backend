@@ -14,7 +14,6 @@ export class DiagnosisController {
       patient.diagnosticos.push(diagnosis.id);
       await Promise.allSettled([diagnosis.save(), patient.save()]);
       return res.send("Diagnóstico creado correctamente");
-      a;
     } catch (error) {
       res.status(500).json({ error: "Hubo un error" });
     }
@@ -25,9 +24,9 @@ export class DiagnosisController {
       const diagnosis = await Diagnosis.find({
         paciente: req.params.patientid,
       }).populate("paciente");
-      res.json(diagnosis);
+      return res.json(diagnosis);
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
 
@@ -43,9 +42,9 @@ export class DiagnosisController {
       if (diagnosis.paciente.id !== req.params.patientid) {
         return res.status(404).json({ message: "Diagnóstico no encontrado" });
       }
-      res.json(diagnosis);
+      return res.json(diagnosis);
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
 
@@ -60,9 +59,9 @@ export class DiagnosisController {
         return res.status(404).json({ message: "Diagnóstico no encontrado" });
       }
 
-      res.send("Diagnóstico actualizado correctamente");
+      return res.send("Diagnóstico actualizado correctamente");
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
 
@@ -80,9 +79,9 @@ export class DiagnosisController {
         (id) => id.toString() !== req.params.diagnosisid
       );
       await patient.save();
-      res.send("Diagnóstico eliminado correctamente");
+      return res.send("Diagnóstico eliminado correctamente");
     } catch (error) {
-      res.status(500).json({ error: "Hubo un error" });
+      return res.status(500).json({ error: "Hubo un error" });
     }
   };
 }
