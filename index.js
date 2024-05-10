@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import PatientRoutes from "./routes/Patient.Routes.js";
-import UserRoutes from "./routes/User.Routes.js";
+import PatientRoutes from "./routes/patientsRoutes.js";
+import UserRoutes from "./routes/userRoutes.js";
 import cors from "cors";
 
 
