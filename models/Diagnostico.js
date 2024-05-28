@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const diagnosisSchema = new mongoose.Schema(
+const DiagnosticoSchema = new mongoose.Schema(
   {
     fechaDiagnostico: {
       type: Date,
@@ -23,4 +23,6 @@ const diagnosisSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Diagnosis", diagnosisSchema);
+const Diagnostico = mongoose.model("Diagnostico", DiagnosticoSchema);
+
+export default Diagnostico;

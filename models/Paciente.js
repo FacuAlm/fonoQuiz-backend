@@ -29,13 +29,17 @@ const patientSchema = new mongoose.Schema(
     diagnosticos: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Diagnosis",
+        ref: "Diagnostico",
       },
     ],
+    creador: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Usuario",
+    },
   },
   { timestamps: true }
 );
 
-const Patient = mongoose.model("Patient", patientSchema);
+const Paciente = mongoose.model("Paciente", patientSchema);
 
-export default Patient;
+export default Paciente;
