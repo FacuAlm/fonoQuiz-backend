@@ -22,7 +22,11 @@ const patientSchema = new mongoose.Schema(
       type: Number,
       trim: true,
     },
-    patologias: {
+    motivoConsulta:{
+      type: String,
+      trim: true,
+    },
+    diagnostico: {
       type: String,
       trim: true,
     },
